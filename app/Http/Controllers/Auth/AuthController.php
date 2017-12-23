@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -22,7 +21,7 @@ use App\Http\Controllers\Traits\SocialiteHelper;
 
 class AuthController extends Controller implements UserCreatorListener
 {
-    use VerifiesUsers,SocialiteHelper,AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use VerifiesUsers, SocialiteHelper, AuthenticatesUsers;
 
     protected $redirectTo = '/topics';
 

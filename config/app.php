@@ -137,6 +137,7 @@ return [
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\Pagination\PaginationServiceProvider::class,
         Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
@@ -150,6 +151,7 @@ return [
         /*
          * Application Service Providers...
          */
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -169,7 +171,6 @@ return [
         EstGroupe\Taggable\Providers\TaggingServiceProvider::class,
         Frozennode\Administrator\AdministratorServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
-        Thujohn\Rss\RssServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         Phphub\Sitemap\SitemapServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
@@ -236,13 +237,11 @@ return [
 
         'Purifier'  => Mews\Purifier\Facades\Purifier::class,
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Rss'       => Thujohn\Rss\RssFacade::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
         'Flash'            => Laracasts\Flash\Flash::class,
         'QrCode'           => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-        'Rss'              => Thujohn\Rss\RssFacade::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
 
         // API

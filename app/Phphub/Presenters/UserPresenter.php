@@ -80,7 +80,7 @@ class UserPresenter extends Presenter
             return $value->role_id;
         });
 
-        $relation = array_first($relations, function ($key, $value) {
+        $relation = array_first($relations, function ($value, $key) {
             return $value->user_id == $this->id;
         });
 
@@ -90,7 +90,7 @@ class UserPresenter extends Presenter
 
         $roles = Role::rolesArrayWithCache();
 
-        $role = array_first($roles, function ($key, $value) use (&$relation) {
+        $role = array_first($roles, function ($value, $key) use (&$relation) {
             return $value->id == $relation->role_id;
         });
 
@@ -101,7 +101,7 @@ class UserPresenter extends Presenter
     {
         $relations = Role::relationArrayWithCache();
 
-        $relations = array_where($relations, function ($key, $value) {
+        $relations = array_where($relations->toArray(), function ($value, $key) {
             return $value->user_id == $this->id && $value->role_id <= 2;
         });
 
@@ -110,7 +110,7 @@ class UserPresenter extends Presenter
 
     public function followingUsersJson()
     {
-        $users = \Auth::user()->followings()->lists('name');
+        $users = \Auth::user()->followings()->pluck('name');
 
         return json_encode($users);
     }

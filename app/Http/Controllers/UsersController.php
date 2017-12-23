@@ -137,7 +137,7 @@ class UsersController extends Controller
             'owner_id'   => Auth::id(),
         ])
             ->with('token')
-            ->lists('id') ?: [];
+            ->pluck('id') ?: [];
 
         $tokens = AccessToken::whereIn('session_id', $sessions)->get();
 

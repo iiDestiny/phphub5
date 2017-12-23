@@ -25,22 +25,22 @@ class TopicPolicy
         return $user->may('manage_topics') || $topic->user_id == $user->id;
     }
 
-    public function recommend(User $user, Topic $topic)
+    public function recommend(User $user)
     {
         return $user->may('manage_topics');
     }
 
-    public function wiki(User $user, Topic $topic)
+    public function wiki(User $user)
     {
         return $user->may('manage_topics');
     }
 
-    public function pin(User $user, Topic $topic)
+    public function pin(User $user)
     {
         return $user->may('manage_topics');
     }
 
-    public function sink(User $user, Topic $topic)
+    public function sink(User $user)
     {
         return $user->may('manage_topics');
     }

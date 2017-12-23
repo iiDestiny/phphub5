@@ -16,28 +16,25 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     protected $namespace = 'App\Http\Controllers';
+
     protected $api_namespace = 'App\Http\ApiControllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function boot(Router $router)
+    public function boot()
     {
-        $router->pattern('id', '[0-9]+');
-
-        parent::boot($router);
+        parent::boot();
     }
 
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
-    public function map(Router $router)
+    public function map()
     {
         // See: https://laravel-china.org/topics/2484#reply2
         $this->mapWebRoutes();
@@ -48,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::group([
             'namespace' => $this->namespace,
-            'middleware' => 'restrict_web_access',
+            'middleware' => ['web', 'restrict_web_access'],
         ], function ($router) {
             require base_path('routes/web.php');
         });
@@ -60,6 +57,7 @@ class RouteServiceProvider extends ServiceProvider
         $api_router->group([
             'version'   => config('api.prefix'),
             'namespace' => $this->api_namespace,
+            'middleware' => ['api'],
         ], function ($router) {
             require base_path('routes/api.php');
         });

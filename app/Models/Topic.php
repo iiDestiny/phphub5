@@ -95,7 +95,7 @@ class Topic extends Model
         $user_ids = Vote::where('votable_type', Topic::class)
                         ->where('votable_id', $this->id)
                         ->where('is', 'upvote')
-                        ->lists('user_id')
+                        ->pluck('user_id')
                         ->toArray();
         return User::whereIn('id', $user_ids)->get();
     }

@@ -7,7 +7,6 @@ use App\Models\Topic;
 use App\Models\Banner;
 use App\Models\Role;
 use Illuminate\Http\Request;
-use Rss;
 use Purifier;
 use Phphub\Handler\EmailHandler;
 use Jrean\UserVerification\Facades\UserVerification;
@@ -69,28 +68,28 @@ class PagesController extends Controller
 
     public function feed()
     {
-        $topics = Topic::excellent()->recent()->limit(20)->get();
+        // $topics = Topic::excellent()->recent()->limit(20)->get();
 
-        $channel =[
-            'title'       => 'Laravel China 社区',
-            'description' => '我们是 PHP 和 Laravel 的中文社区，在这里我们讨论技术, 分享技术。',
-            'link'        => url(route('feed')),
-        ];
+        // $channel =[
+        //     'title'       => 'Laravel China 社区',
+        //     'description' => '我们是 PHP 和 Laravel 的中文社区，在这里我们讨论技术, 分享技术。',
+        //     'link'        => url(route('feed')),
+        // ];
 
-        $feed = Rss::feed('2.0', 'UTF-8');
+        // $feed = Rss::feed('2.0', 'UTF-8');
 
-        $feed->channel($channel);
+        // $feed->channel($channel);
 
-        foreach ($topics as $topic) {
-            $feed->item([
-                'title'             => $topic->title,
-                'description|cdata' => str_limit($topic->body, 200),
-                'link'              => $topic->link(),
-                'pubDate'           => date('Y-m-d', strtotime($topic->created_at)),
-                ]);
-        }
+        // foreach ($topics as $topic) {
+        //     $feed->item([
+        //         'title'             => $topic->title,
+        //         'description|cdata' => str_limit($topic->body, 200),
+        //         'link'              => $topic->link(),
+        //         'pubDate'           => date('Y-m-d', strtotime($topic->created_at)),
+        //         ]);
+        // }
 
-        return response($feed, 200, array('Content-Type' => 'text/xml'));
+        // return response($feed, 200, array('Content-Type' => 'text/xml'));
     }
 
     public function sitemap()

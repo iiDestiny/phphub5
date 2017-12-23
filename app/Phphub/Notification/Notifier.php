@@ -71,7 +71,7 @@ class Notifier
 
     public function newAppendNotify(User $fromUser, Topic $topic, Append $append)
     {
-        $users = $topic->replies()->with('user')->get()->lists('user');
+        $users = $topic->replies()->with('user')->get()->pluck('user');
 
         // Notify commented user
         Notification::batchNotify(
