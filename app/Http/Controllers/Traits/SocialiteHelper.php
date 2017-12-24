@@ -8,7 +8,7 @@ use Flash;
 
 trait SocialiteHelper
 {
-    protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixin'];
+    protected $oauthDrivers = ['github' => 'github', 'wechat' => 'weixinweb'];
 
     public function oauth(Request $request)
     {
