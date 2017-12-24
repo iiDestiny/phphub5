@@ -151,6 +151,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Laravel\Tinker\TinkerServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
