@@ -6,11 +6,9 @@ use Closure;
 use Dingo\Api\Routing\Router;
 use Dingo\Api\Auth\Auth as Authentication;
 use League\OAuth2\Server\Exception\AccessDeniedException;
-use LucaDegasperi\OAuth2Server\Authorizer;
 
 class OAuthMiddleware
 {
-    protected $authorizer;
     private $auth;
     private $router;
 
@@ -19,13 +17,11 @@ class OAuthMiddleware
      *
      * @param \Dingo\Api\Routing\Router $router
      * @param \Dingo\Api\Auth\Auth      $auth
-     * @param Authorizer                $authorizer
      */
-    public function __construct(Router $router, Authentication $auth, Authorizer $authorizer)
+    public function __construct(Router $router, Authentication $auth)
     {
         $this->router = $router;
         $this->auth = $auth;
-        $this->authorizer = $authorizer;
     }
 
     /**
@@ -45,13 +41,6 @@ class OAuthMiddleware
 
         if (! $this->auth->check(false)) {
             $this->auth->authenticate($route->getAuthenticationProviders());
-        }
-
-        $this->authorizer->setRequest($request);
-
-        //type: user or client
-        if ($type && $this->authorizer->getResourceOwnerType() !== $type) {
-            throw new AccessDeniedException();
         }
 
         return $next($request);

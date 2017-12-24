@@ -16,9 +16,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\CheckUserIsItBanned::class,
         \App\Http\Middleware\RecordLastActivedTime::class,
         \Spatie\Pjax\Middleware\FilterIfPjax::class,
-
-        // API
-        \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
     ];
 
     /**
@@ -60,8 +57,7 @@ class Kernel extends HttpKernel
 
         // API
         'oauth2'     => \App\Http\Middleware\OAuthMiddleware::class,
-        'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
-        'api.throttle'               => \Dingo\Api\Http\Middleware\RateLimit::class,
+        'api.throttle' => \Dingo\Api\Http\Middleware\RateLimit::class,
 
         // 限制 Web 内容只能是 web 访问
         'restrict_web_access' => \App\Http\Middleware\RestrictWebAccess::class,

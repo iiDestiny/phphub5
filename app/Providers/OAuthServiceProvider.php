@@ -12,21 +12,21 @@ class OAuthServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->app[DingoAuth::class]->extend('oauth', function ($app) {
-            $provider = new OAuth2($app['oauth2-server.authorizer']->getChecker());
+        // $this->app[DingoAuth::class]->extend('oauth', function ($app) {
+        //     $provider = new OAuth2($app['oauth2-server.authorizer']->getChecker());
 
-            $provider->setUserResolver(function ($id) {
-                Auth::loginUsingId($id);
+        //     $provider->setUserResolver(function ($id) {
+        //         Auth::loginUsingId($id);
 
-                return User::findOrFail($id);
-            });
+        //         return User::findOrFail($id);
+        //     });
 
-            $provider->setClientResolver(function ($id) {
-                //TODO: Logic to return a client by their ID.
-            });
+        //     $provider->setClientResolver(function ($id) {
+        //         //TODO: Logic to return a client by their ID.
+        //     });
 
-            return $provider;
-        });
+        //     return $provider;
+        // });
     }
 
     public function register()
